@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.9)
+project(sserver)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
+
+include_directories(./app)
+include_directories(./core)
+include_directories(./data)
+include_directories(./net)
+include_directories(./util)
+
+add_executable(sserver
+    app/linux/main.c app/linux/child.c
+    core/linux/api.c core/linux/thread.c
+    data/linux/hashtable.c data/linux/memory.c data/linux/queue.c
+    net/linux/listen.c net/linux/request.c net/linux/response.c
+    util/linux/config.c util/linux/global.c
+)
